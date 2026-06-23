@@ -10,6 +10,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = join(
   __dirname,
   "..",
+  "skills",
+  "conference-organizing-knowledge",
   "references",
   "conference-organizing.md",
 );

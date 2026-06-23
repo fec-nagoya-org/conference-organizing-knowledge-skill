@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "conference-organizing-knowledge",
+  "description": "カンファレンス開催ノウハウを提供するClaude Codeプラグイン",
+  "owner": {
+    "name": "fec-nagoya-org",
+    "email": "satake.satake.y@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "conference-organizing-knowledge",
+      "description": "カンファレンス・技術イベント開催のノウハウを提供するプラグイン。会場選定、スケジュール設計、スポンサー対応、CFP運営、スタッフ管理など、主催に関わるあらゆる知見を参照できる。",
+      "author": {
+        "name": "fec-nagoya-org"
+      },
+      "category": "productivity",
+      "source": ".",
+      "homepage": "https://github.com/fec-nagoya-org/conference-organizing-knowledge"
+    }
+  ]
+}
