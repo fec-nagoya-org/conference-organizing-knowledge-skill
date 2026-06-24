@@ -2,15 +2,17 @@
 
 ## 前提
 
-- [mise](https://mise.jdx.dev/) によるツールバージョン管理（bun 1.3.14, node 24）
-- bun をランタイム/パッケージマネージャとして使用
-- biome 2.x によるリント/フォーマット
-- lefthook による git hooks
+本リポジトリでは、ツールのバージョン管理に[mise](https://mise.jdx.dev/)を使用しています。
+
+miseのインストール、もしくはmiseを使用しない場合には、[mise.toml](../mise.toml)を参照し、各ツールの用意を行なってください。
 
 ## セットアップ
 
 ```sh
+# ツールのインストール
 mise install
+
+# 依存関係のインストール
 bun install
 ```
 
@@ -19,7 +21,7 @@ bun install
 | コマンド | 内容 |
 |---|---|
 | `bun run fetch` | Google Docsからコンテンツを取得しMarkdownに変換 |
-| `bun run check` | biomeによるリント/フォーマット（自動修正） |
+| `bun run check` | biomeによるリント/フォーマット|
 | `bun run test` | vitestによるテスト実行 |
 | `bun run validate` | Claude Codeプラグインのバリデーション |
 
@@ -54,14 +56,3 @@ bun install
 5. 前回の内容と比較し、変更がある場合のみファイルを更新
 
 環境変数`GOOGLE_API_KEY`を設定するとDrive API経由で取得する。未設定の場合は公開エクスポートURLを使用する。
-
-## lefthook hooks
-
-pre-commitで以下を並列実行する。
-
-- plugin-validate: `claude plugin validate --strict .`
-- biome-check: `bun run check`
-- skill-md-exists: SKILL.mdの存在確認
-- marketplace-json-valid: marketplace.jsonのJSON構文チェック
-
-pre-pushでplugin-validateを実行する。

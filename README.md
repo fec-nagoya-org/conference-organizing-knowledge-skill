@@ -1,18 +1,20 @@
 # Conference Organizing Knowledge Skill
 
-Google Docsとして公開されている[カンファレンス開催ノウハウ](https://docs.google.com/document/d/1b0GAEADYCefXw4GZNTO6mktZDhZ-hno7QIziqh54W4I/edit?usp=sharing)をClaude CodeのSkillとして提供するプラグイン。
-GitHub Actionsにより3日ごとにDocsの内容を自動同期している。
+Google Docsとして公開されている[カンファレンス開催ノウハウ](https://docs.google.com/document/d/1b0GAEADYCefXw4GZNTO6mktZDhZ-hno7QIziqh54W4I/edit?usp=sharing)をClaudeのSkillとして提供するプラグイン。
+GitHub Actionsにより3日ごとにDocsの内容を自動同期しています。
 
 ## Skillの導入
 
-マーケットプレイスの追加とプラグインのインストールを行う。
-
-```sh
+```zsh
+# マーケットプレイスの追加
 claude plugin marketplace add fec-nagoya-org/conference-organizing-knowledge
-claude plugin install conference-organizing-knowledge-skill@conference-organizing-knowledge-skill
-```
 
-インストール後、カンファレンス開催に関する質問をすると自動的にSkillが参照される。
+# プラグインのインストール
+claude plugin install 
+
+# skillの使用
+conference-organizing-knowledge-skill@conference-organizing-knowledge-skill
+```
 
 ## カンファレンス開催ノウハウとは
 
