@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import TurndownService from "turndown";
@@ -43,6 +43,11 @@ html = html.replace(/<img[^>]*>/gi, "");
 html = html.replace(/\s+(class|style|id)="[^"]*"/gi, "");
 html = html.replace(/\s+(class|style|id)='[^']*'/gi, "");
 
+html = html.replace(
+	/https:\/\/www\.google\.com\/url\?q=(.*?)&(?:amp;)?sa=D[^"']*/gi,
+	(_, encodedUrl) => decodeURIComponent(encodedUrl),
+);
+
 const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
 if (bodyMatch) {
 	html = bodyMatch[1];
@@ -78,6 +83,17 @@ const header = `<!-- このファイルはGoogle Docsから自動生成されて
 <!-- 最終更新: ${new Date().toISOString()} -->
 
 `;
+
+let existing = "";
+try {
+	existing = readFileSync(outputPath, "utf-8");
+} catch {}
+
+const stripHeader = (s) => s.replace(/^<!--[\s\S]*?-->\n\n/m, "");
+if (stripHeader(existing) === stripHeader(header + markdown)) {
+	console.log("No content changes detected, skipping write.");
+	process.exit(0);
+}
 
 writeFileSync(outputPath, header + markdown, "utf-8");
 console.log(`Written: ${outputPath} (${(header + markdown).length} chars)`);
