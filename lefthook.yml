@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    plugin-validate:
+      run: claude plugin validate --strict .
+    biome-check:
+      glob: "*.{js,mjs,ts,json}"
+      run: bun run lint
+    skill-md-exists:
+      run: test -f skills/conference-organizing-knowledge/SKILL.md
+    marketplace-json-valid:
+      run: python3 -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
+
+pre-push:
+  commands:
+    plugin-validate:
+      run: claude plugin validate --strict .
